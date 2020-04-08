@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/utils/getDirname.js"],"names":["__dirname"],"mappings":";;;;;;;;;;;;eACe;AAAA,SAAMA,SAAN;AAAA,C;;AADf","sourcesContent":["// This is due to test and the inability to mock or stub __dirname\nexport default () => __dirname\n"],"file":"getDirname.js"}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/browser/components/Default404.js"],"names":[],"mappings":";;;;;;;AAAA;;;;;;;;;;;eAEe;AAAA,SACb;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,2DADa;AAAA,C","sourcesContent":["import React from 'react'\n\nexport default () => (\n  <div>404 - We couldn't find the page you're looking for!</div>\n)\n"],"file":"Default404.js"}
