@@ -27,6 +27,15 @@ exports[`BodyWithMeta when route is a static route 1`] = `
       static page
     </div>
     <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "
+    window.__routeInfo = {};",
+        }
+      }
+      type="text/javascript"
+    />
+    <script
       defer={true}
       key="main.js"
       src="/assets/path/main.js"
