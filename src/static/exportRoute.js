@@ -271,7 +271,7 @@ export default (async function exportRoute({
     'routeInfo.js'
   )
 
-  const jsRouteInfo = `window.__routeInfo = ${routeInfo}`
+  const jsRouteInfo = `window.__routeInfo = ${JSON.stringify(routeInfo)}`
 
   const res = await Promise.all([
     fs.outputFile(htmlFilename, html),
