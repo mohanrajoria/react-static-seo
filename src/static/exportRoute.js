@@ -265,10 +265,21 @@ export default (async function exportRoute({
     'routeInfo.json'
   )
 
+  const jsRouteInfoFilename = nodePath.join(
+    config.paths.DIST,
+    route.path,
+    'routeInfo.js'
+  )
+
+  const jsRouteInfo = `window.__routeInfo = ${routeInfo}`
+
   const res = await Promise.all([
     fs.outputFile(htmlFilename, html),
     !route.redirect
       ? fs.outputJson(routeInfoFilename, routeInfo)
+      : Promise.resolve(),
+    !route.redirect
+      ? fs.outputFile(jsRouteInfoFilename, jsRouteInfo)
       : Promise.resolve(),
   ])
   return res

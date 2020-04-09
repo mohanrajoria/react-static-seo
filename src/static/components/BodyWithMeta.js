@@ -3,14 +3,6 @@ import { pathJoin, makePathAbsolute } from '../../utils'
 
 const REGEX_FOR_SCRIPT = /<(\/)?(script)/gi
 
-const generateRouteInformation = () => ({
-  __html: `
-    window.__routeInfo = ${JSON.stringify({}).replace(
-      REGEX_FOR_SCRIPT,
-      '<"+"$1$2'
-    )};`,
-})
-
 // Not only do we pass react-helmet attributes and the app.js here, but
 // we also need to  hard code site props and route props into the page to
 // prevent flashing when react mounts onto the HTML.
@@ -24,12 +16,7 @@ export const makeBodyWithMeta = ({
 }) => ({ children, ...rest }) => (
   <body {...head.bodyProps} {...rest}>
     {children}
-    {!route.redirect && (
-      <script
-        type="text/javascript"
-        dangerouslySetInnerHTML={generateRouteInformation(embeddedRouteInfo)}
-      />
-    )}
+    {!route.redirect && <script type="text/javascript" src="routeInfo.js" />}
     {!route.redirect &&
       clientScripts.map(script => (
         <script
