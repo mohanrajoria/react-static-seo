@@ -258,29 +258,8 @@ export default (async function exportRoute({
       ? nodePath.join(config.paths.DIST, '404.html')
       : nodePath.join(config.paths.DIST, route.path, 'index.html')
 
-  // Make the routeInfo sit right next to its companion html file
-  const routeInfoFilename = nodePath.join(
-    config.paths.DIST,
-    route.path,
-    'routeInfo.json'
-  )
-
-  const jsRouteInfoFilename = nodePath.join(
-    config.paths.DIST,
-    route.path,
-    'routeInfo.js'
-  )
-
-  const jsRouteInfo = `window.__routeInfo = ${JSON.stringify(routeInfo)}`
-
   const res = await Promise.all([
-    fs.outputFile(htmlFilename, html),
-    !route.redirect
-      ? fs.outputJson(routeInfoFilename, routeInfo)
-      : Promise.resolve(),
-    !route.redirect
-      ? fs.outputFile(jsRouteInfoFilename, jsRouteInfo)
-      : Promise.resolve(),
+    fs.outputFile(htmlFilename, html)
   ])
   return res
 })

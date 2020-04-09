@@ -8,7 +8,6 @@ const REGEX_FOR_SCRIPT = /<(\/)?(script)/gi
 // prevent flashing when react mounts onto the HTML.
 export const makeBodyWithMeta = ({
   head,
-  route,
   // This embeddedRouteInfo will be inlined into the HTML for this route.
   // It should only include the full props, not the partials.
   embeddedRouteInfo,
@@ -16,17 +15,5 @@ export const makeBodyWithMeta = ({
 }) => ({ children, ...rest }) => (
   <body {...head.bodyProps} {...rest}>
     {children}
-    {!route.redirect && <script type="text/javascript" src="routeInfo.js" />}
-    {!route.redirect &&
-      clientScripts.map(script => (
-        <script
-          key={script}
-          defer
-          type="text/javascript"
-          src={makePathAbsolute(
-            pathJoin(process.env.REACT_STATIC_ASSETS_PATH, script)
-          )}
-        />
-      ))}
   </body>
 )
