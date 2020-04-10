@@ -258,8 +258,6 @@ export default (async function exportRoute({
       ? nodePath.join(config.paths.DIST, '404.html')
       : nodePath.join(config.paths.DIST, route.path, 'index.html')
 
-  const res = await Promise.all([
-    fs.outputFile(htmlFilename, html)
-  ])
+  const res = await Promise.all([fs.outputFile(htmlFilename, html)])
   return res
 })
