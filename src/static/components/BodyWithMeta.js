@@ -7,11 +7,7 @@ const REGEX_FOR_SCRIPT = /<(\/)?(script)/gi
 // we also need to  hard code site props and route props into the page to
 // prevent flashing when react mounts onto the HTML.
 export const makeBodyWithMeta = ({
-  head,
-  // This embeddedRouteInfo will be inlined into the HTML for this route.
-  // It should only include the full props, not the partials.
-  embeddedRouteInfo,
-  clientScripts = [],
+  head
 }) => ({ children, ...rest }) => (
   <body {...head.bodyProps} {...rest}>
     {children}
