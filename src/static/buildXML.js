@@ -56,6 +56,6 @@ export default async ({ config }) => {
   }
 
   const xml = generateXML({ routes, prefixPath })
-
-  await fs.writeFile(nodePath.join(DIST, 'sitemap.xml'), xml)
+  console.log('Generating ' + nodePath.join(DIST, 'sitemap.xml'))
+  fs.writeFileSync(nodePath.join(DIST, 'sitemap.xml'), xml)
 }
