@@ -69,6 +69,7 @@ export default (async function buildHTML({
           })
           exporter.on('message', ({ type, payload }) => {
             if (type === 'error') {
+              console.log('Error in building HTML: ' + JSON.stringify(payload))
               reject(payload)
             }
             if (type === 'log') {
