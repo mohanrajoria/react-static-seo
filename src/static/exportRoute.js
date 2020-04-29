@@ -251,10 +251,10 @@ export default (async function exportRoute({
 
   html = html.replace(srcReplace, `$1${publicPath}$3`)
 
+  const htmlFilename = nodePath.join(config.paths.DIST, route.path, 'index.html')
+
   let res
   if (route.path === '404') {
-    const htmlFilename = nodePath.join(config.paths.DIST, route.path, 'index.html')
-
     // Make the routeInfo sit right next to its companion html file
     const routeInfoFilename = nodePath.join(
       config.paths.DIST,
