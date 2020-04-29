@@ -251,13 +251,26 @@ export default (async function exportRoute({
 
   html = html.replace(srcReplace, `$1${publicPath}$3`)
 
-  // If the route is a 404 page, write it directly to 404.html, instead of
-  // inside a directory.
-  const htmlFilename =
-    route.path === '404'
-      ? nodePath.join(config.paths.DIST, '404.html')
-      : nodePath.join(config.paths.DIST, route.path, 'index.html')
+  let res
+  if (route.path === '404') {
+    const htmlFilename = nodePath.join(config.paths.DIST, route.path, 'index.html')
 
-  const res = await Promise.all([fs.outputFile(htmlFilename, html)])
+    // Make the routeInfo sit right next to its companion html file
+    const routeInfoFilename = nodePath.join(
+      config.paths.DIST,
+      route.path,
+      'routeInfo.json'
+    )
+
+    res = await Promise.all([
+      fs.outputFile(htmlFilename, html),
+      !route.redirect
+        ? fs.outputJson(routeInfoFilename, routeInfo)
+        : Promise.resolve(),
+    ])
+  } else {
+    res = await Promise.all([ fs.outputFile(htmlFilename, html) ])
+  }
+
   return res
 })
