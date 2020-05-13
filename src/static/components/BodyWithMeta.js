@@ -3,9 +3,9 @@ import { pathJoin, makePathAbsolute } from '../../utils'
 
 const REGEX_FOR_SCRIPT = /<(\/)?(script)/gi
 
-const generateRouteInformation = () => ({
+const generateRouteInformation = embeddedRouteInfo => ({
   __html: `
-    window.__routeInfo = ${JSON.stringify({}).replace(
+    window.__routeInfo = ${JSON.stringify(embeddedRouteInfo).replace(
       REGEX_FOR_SCRIPT,
       '<"+"$1$2'
     )};`,
