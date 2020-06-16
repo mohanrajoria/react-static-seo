@@ -18,17 +18,18 @@ export const makeBodyWithMeta = ({
   head,
   route,
   embeddedRouteInfo,
-  clientScripts = []
+  clientScripts = [],
 }) => ({ children, ...rest }) => (
   <body {...head.bodyProps} {...rest}>
     {children}
-    {!route.redirect && route.path === '404' && (
+    {!route.redirect && (route.path === '404' || route.path.indexOf('providers/') === 0) && (
       <script
         type="text/javascript"
         dangerouslySetInnerHTML={generateRouteInformation(embeddedRouteInfo)}
       />
     )}
-    {!route.redirect && route.path === '404' &&
+    {!route.redirect &&
+      (route.path === '404' || route.path.indexOf('providers/') === 0) &&
       clientScripts.map(script => (
         <script
           key={script}
