@@ -82,7 +82,7 @@
     "react-hot-loader": "^4.6.1",
     "react-universal-component": "^3.0.2",
     "resolve-from": "^4.0.0",
-    "serve": "^10.1.1",
+    "serve": "^10.1.2",
     "shorthash": "^0.0.2",
     "slash": "^2.0.0",
     "socket.io": "^2.1.1",
