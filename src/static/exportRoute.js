@@ -258,7 +258,7 @@ export default (async function exportRoute({
   )
 
   let res
-  if (route.path === '404' || route.path.indexOf('providers/') === 0) {
+  if (route.path === '404' || route.path.indexOf('experts/') === 0) {
     // Make the routeInfo sit right next to its companion html file
     const routeInfoFilename = nodePath.join(
       config.paths.DIST,
