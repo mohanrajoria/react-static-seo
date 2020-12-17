@@ -257,24 +257,19 @@ export default (async function exportRoute({
     'index.html'
   )
 
-  let res
-  if (route.path === '404' || route.path.indexOf('experts/') === 0) {
-    // Make the routeInfo sit right next to its companion html file
-    const routeInfoFilename = nodePath.join(
-      config.paths.DIST,
-      route.path,
-      'routeInfo.json'
-    )
+  // Make the routeInfo sit right next to its companion html file
+  const routeInfoFilename = nodePath.join(
+    config.paths.DIST,
+    route.path,
+    'routeInfo.json'
+  )
 
-    res = await Promise.all([
-      fs.outputFile(htmlFilename, html),
-      !route.redirect
-        ? fs.outputJson(routeInfoFilename, routeInfo)
-        : Promise.resolve(),
-    ])
-  } else {
-    res = await Promise.all([fs.outputFile(htmlFilename, html)])
-  }
+  const res = await Promise.all([
+    fs.outputFile(htmlFilename, html),
+    !route.redirect
+      ? fs.outputJson(routeInfoFilename, routeInfo)
+      : Promise.resolve(),
+  ])
 
   return res
 })
