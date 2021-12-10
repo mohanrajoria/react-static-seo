@@ -26,7 +26,12 @@ export default async ({
   )).default
   // Retrieve the document template
   const DocumentTemplate = config.Document || DefaultDocument
-
+  console.log("-------------------------------------------------------------");
+  console.log("-------------------------------------------------------------");
+  console.log("In exporter : Now will start creating tasks, routes count is: ");
+  console.log(routes.length);
+  console.log("-------------------------------------------------------------");
+  console.log("-------------------------------------------------------------");
   const tasks = []
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i]
