@@ -41,12 +41,12 @@ export default async ({
         incremental,
       })
       console.log("-------------------------------------------------------------");
-      console.log("In exporter : processing task: ", route.path);
+      console.log("In exporter : processing task: ", i, route.path);
       console.log("-------------------------------------------------------------");
       htmlProgress.tick()
     })
     console.log("-------------------------------------------------------------");
-    console.log("In exporter : Task pushed: ", route.path);
+    console.log("In exporter : Task pushed: ", i, route.path);
     console.log("-------------------------------------------------------------");
   }
   await poolAll(tasks, Number(config.outputFileRate))
