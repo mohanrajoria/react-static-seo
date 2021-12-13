@@ -11,12 +11,28 @@ export default (async function exportRoutes({
   // we modify config in fetchSiteData
   const siteData = await fetchSiteData(config)
   // we modify config in fetchRoutes
-  await fetchRoutes(config)
 
-  await buildHTML({
-    config,
-    siteData,
-    clientStats,
-    incremental,
-  })
+  const buildPartially = async (routesConfig) => {
+    await fetchRoutes(routesConfig);
+    await buildHTML({
+      routesConfig,
+      siteData,
+      clientStats,
+      incremental
+    })
+    console.log("////////////////////////////////////////////////////////////////");
+    console.log('Build finished for routes length : ', routesConfig.routes.length);
+    console.log("////////////////////////////////////////////////////////////////");
+  }
+
+  const routes = [...config.routes];
+  const processRoutes = 1000;
+
+  while(routes.length > 0) {
+    console.log("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    console.log('Remaining routes length : ', routes.length);
+    console.log("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    const routesConfig = {...config, routes: routes.splice(0, processRoutes)};
+    await buildPartially(routesConfig);
+  }
 })
